@@ -1,13 +1,10 @@
+import { getPokemonsList } from "@/server"
 import Image from "next/image"
+import Link from "next/link"
 import { FC } from "react"
 
-interface IProps {}
-
-const PokemonGrid: FC<IProps> = async ({}) => {
-	// await for 2 sec
-	await new Promise((resolve) => setTimeout(resolve, 2500))
-	const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
-	const data = await response.json()
+const PokemonGrid: FC = async ({}) => {
+	const data = await getPokemonsList()
 
 	if (data?.results?.length === 0) {
 		return (
@@ -17,25 +14,26 @@ const PokemonGrid: FC<IProps> = async ({}) => {
 		)
 	}
 
+
 	return (
 		<div className="grid w-full grid-cols-3 gap-3 p-3">
 			{data.results.map((pokemon: any, idx: number) => (
-				<article
+				<Link
 					key={idx}
+					href={`/pokemon/${idx + 1}`}
 					className="flex flex-col items-center justify-center rounded-md bg-slate-800"
 				>
 					<Image
-						src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${
-							idx + 1
-						}.png`}
+						src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${idx + 1}.png`}
 						alt={pokemon.name}
 						height={512}
 						width={512}
 						className="h-24 w-24"
+						priority={idx < 21 ? true : false}
 					/>
 
 					<span>{pokemon.name}</span>
-				</article>
+				</Link>
 			))}
 		</div>
 	)
