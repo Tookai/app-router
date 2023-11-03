@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -31,12 +30,11 @@ export default function RootLayout({
 			className={`${inter.variable} antialiased`}
 			suppressHydrationWarning
 		>
-			<body className="flex min-h-screen w-full flex-col bg-slate-950">
+			<body className="flex h-screen w-full flex-col overflow-hidden bg-slate-950">
 				<Header />
-				<main className="mt-16 flex w-full flex-1 flex-col overflow-auto">
+				<main className="flex w-full flex-1 flex-col overflow-auto">
 					{children}
 				</main>
-				<Footer />
 			</body>
 		</html>
 	)
