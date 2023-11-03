@@ -15,7 +15,7 @@ export async function generateMetadata({ params: { id } }: any) {
 const IndexPage: NextPage<PageProps> = async ({ params: { id } }) => {
 	return (
 		<div className="flex-1 bg-purple-800">
-			<Suspense fallback={<Loader />}>
+			<Suspense fallback={<Loader />} key={id}>
 				<Pokemon id={id} />
 			</Suspense>
 		</div>
