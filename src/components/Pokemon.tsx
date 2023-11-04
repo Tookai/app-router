@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Pokemon: FunctionComponent<IProps> = async ({ id }) => {
-	const data = await getPokemon(id)
+	const data = await getPokemon(id, 10000)
 
 	return <pre className="code">{JSON.stringify(data, null, 2)}</pre>
 }
