@@ -32,7 +32,6 @@ const SoloLayout: FunctionComponent<PropsWithChildren<IProps>> = async ({
 
 				<form
 					action={async () => {
-						"use server"
 						return await refetchPokemon(id)
 					}}
 				>
